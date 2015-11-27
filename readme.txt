@@ -12,6 +12,10 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Set custom availability for products
 
+Features:
+* Set custom availability strings for your products
+* Works on simple & variable products
+
 == Installation ==
 
 1. Upload plugin to the `/wp-content/plugins/` directory.
@@ -24,7 +28,9 @@ None yet.
 
 == Screenshots ==
 
-None yet.
+1. Product stock edit view
+2. Variable product edit view
+3. Product page view in the front end
 
 == Changelog ==
 

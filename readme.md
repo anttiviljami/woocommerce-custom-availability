@@ -15,10 +15,10 @@ Features:
 ## Screenshots
 
 ### Product stock edit view
-![Simple Product View](/assets/screenshot1.png)
+![Simple Product View](/assets/screenshot-1.png)
 
 ### Variable product edit view
-![Variable Product View](/assets/screenshot2.png)
+![Variable Product View](/assets/screenshot-2.png)
 
 ### Product page view in the front end
-![Front End View](/assets/screenshot3.png)
+![Front End View](/assets/screenshot-3.png)

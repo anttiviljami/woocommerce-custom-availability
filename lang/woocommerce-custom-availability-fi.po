@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: WooCommerce Custom Availability\n"
-"POT-Creation-Date: 2015-11-27 21:53+0200\n"
-"PO-Revision-Date: 2015-11-27 21:53+0200\n"
+"POT-Creation-Date: 2015-11-27 23:09+0200\n"
+"PO-Revision-Date: 2015-11-27 23:09+0200\n"
 "Last-Translator: Antti Kuosmanen <antti@seravo.fi>\n"
 "Language-Team: Antti Kuosmanen <antti@seravo.fi>\n"
 "Language: fi\n"
@@ -20,11 +20,13 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: woocommerce-custom-availability.php:69
-msgid "Custom Availability:"
-msgstr "Poikkeuksellinen saatavuus:"
+#: woocommerce-custom-availability.php:73
+#: woocommerce-custom-availability.php:114
+msgid "Custom Availability"
+msgstr "Poikkeuksellinen saatavuus"
 
-#: woocommerce-custom-availability.php:72
+#: woocommerce-custom-availability.php:76
+#: woocommerce-custom-availability.php:117
 msgid "Override the default availability text."
 msgstr "Aseta oma saatavuusteksti tuotesivulle."
 
@@ -44,5 +46,5 @@ msgstr ""
 msgid "Seravo Oy"
 msgstr ""
 
-#~ msgid "Custom Availability"
-#~ msgstr "Poikkeuksellinen saatavuus"
+#~ msgid "Custom Availability:"
+#~ msgstr "Poikkeuksellinen saatavuus:"

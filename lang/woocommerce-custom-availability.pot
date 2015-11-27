@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: WooCommerce Custom Availability\n"
-"POT-Creation-Date: 2015-11-27 21:52+0200\n"
+"POT-Creation-Date: 2015-11-27 23:09+0200\n"
 "PO-Revision-Date: 2015-11-27 21:38+0200\n"
 "Last-Translator: Antti Kuosmanen <antti@seravo.fi>\n"
 "Language-Team: Antti Kuosmanen <antti@seravo.fi>\n"
@@ -20,11 +20,13 @@ msgstr ""
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: woocommerce-custom-availability.php:69
-msgid "Custom Availability:"
+#: woocommerce-custom-availability.php:73
+#: woocommerce-custom-availability.php:114
+msgid "Custom Availability"
 msgstr ""
 
-#: woocommerce-custom-availability.php:72
+#: woocommerce-custom-availability.php:76
+#: woocommerce-custom-availability.php:117
 msgid "Override the default availability text."
 msgstr ""
 

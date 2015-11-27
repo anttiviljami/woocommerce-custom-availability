@@ -1,0 +1,13 @@
+{
+    "name": "anttiviljami/woocommerce-custom-availability",
+    "description": "Set custom availability for products",
+    "type": "wordpress-plugin",
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Antti Kuosmanen",
+            "email": "antti@seravo.fi"
+        }
+    ],
+    "require": {}
+}

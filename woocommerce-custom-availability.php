@@ -66,7 +66,7 @@ if (!class_exists('WooCommerce_Custom_Availability')) {
       woocommerce_wp_text_input(
         array(
           'id'          => '_custom_availability[' . $variation->ID . ']',
-          'label'       => __( 'Custom Availability', 'woocommerce-custom-availability' ),
+          'label'       => __( 'Custom Availability:', 'woocommerce-custom-availability' ),
           'placeholder' => '',
           'desc_tip'    => 'true',
           'description' => __( 'Override the default availability text.', 'woocommerce-custom-availability' ),

@@ -38,10 +38,16 @@ if (!class_exists('WooCommerce_Custom_Availability')) {
       // load textdomain for translations
       add_action( 'plugins_loaded',  array( $this, 'load_our_textdomain' ) );
 
+      // add single custom fields
+      add_action( 'woocommerce_product_options_stock_fields', array( $this, 'custom_availability_field' ) ); 
+
+      // save handler for custom fields
+      add_action( 'save_post', array( $this, 'save_custom_availability_field' ) );
+      
       // add variation custom fields
       add_action( 'woocommerce_product_after_variable_attributes', array( $this, 'custom_availability_variation_field' ), 10, 3 );
 
-      // save handler for the fields
+      // save handler for the variation fields
       add_action( 'woocommerce_save_product_variation', array( $this, 'save_custom_availability_variation_field' ), 10, 2 );
 
       // use custom availability in the frontend
@@ -56,6 +62,45 @@ if (!class_exists('WooCommerce_Custom_Availability')) {
     }
 
     /**
+     * Show the custom availability edit field for simple products
+     */
+    public function custom_availability_field() {
+      global $post;
+
+      woocommerce_wp_text_input(
+        array(
+          'id'          => '_custom_availability_simple',
+          'label'       => __( 'Custom Availability', 'woocommerce-custom-availability' ),
+          'placeholder' => '',
+          'desc_tip'    => 'true',
+          'description' => __( 'Override the default availability text.', 'woocommerce-custom-availability' ),
+          'value'       => get_post_meta( $post->ID, '_custom_availability', true)
+        )
+      );
+    }
+
+    /**
+     * Handle the custom availability edit field save for simple products
+     */
+    public function save_custom_availability_field() {
+      global $post;
+      if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+        return;
+      }
+
+      if ( 'product' != $post->post_type ) {
+        return;
+      }
+
+      if ( ! isset( $_REQUEST['_custom_availability_simple'] ) ) {
+        return;
+      }
+
+      update_post_meta( $post->ID, '_custom_availability', $_REQUEST['_custom_availability_simple'] );
+    }
+    
+
+    /**
      * Show the custom availability edit field for variations
      *
      * @param $loop
@@ -66,7 +111,7 @@ if (!class_exists('WooCommerce_Custom_Availability')) {
       woocommerce_wp_text_input(
         array(
           'id'          => '_custom_availability[' . $variation->ID . ']',
-          'label'       => __( 'Custom Availability:', 'woocommerce-custom-availability' ),
+          'label'       => __( 'Custom Availability', 'woocommerce-custom-availability' ) . ':',
           'placeholder' => '',
           'desc_tip'    => 'true',
           'description' => __( 'Override the default availability text.', 'woocommerce-custom-availability' ),
@@ -76,12 +121,12 @@ if (!class_exists('WooCommerce_Custom_Availability')) {
     }
 
     /**
-     * Handle the custom availability edit field save
+     * Handle the custom availability edit field save for variable products
      *
      * @param int $post_id
      */
     public function save_custom_availability_variation_field( $post_id ) {
-      $custom_availability = $_POST['_custom_availability'][ $post_id ];
+      $custom_availability = $_REQUEST['_custom_availability'][ $post_id ];
       if( ! empty( $custom_availability ) ) {
         update_post_meta( $post_id, '_custom_availability', esc_attr( $custom_availability ) );
       }
@@ -94,12 +139,12 @@ if (!class_exists('WooCommerce_Custom_Availability')) {
      * @param WC_Product $product
      */
     public function custom_availability( $availability, $product  ) {
-      if( $product->variation_id ) {
-        $custom_availability = get_post_meta( $product->variation_id, '_custom_availability', true);
-        if( !empty( $custom_availability ) ) {
-          $availability['class'] = 'custom-availability';
-          $availability['availability'] = esc_attr( $custom_availability );
-        }
+      $product_id = isset( $product->variation_id ) ? $product->variation_id : $product->id;
+      $custom_availability = get_post_meta( $product_id, '_custom_availability', true);
+
+      if( !empty( $custom_availability ) ) {
+        $availability['class'] = 'custom-availability';
+        $availability['availability'] = esc_attr( $custom_availability );
       }
       return $availability;
     }

@@ -36,7 +36,7 @@ if (!class_exists('WooCommerce_Custom_Availability')) {
 
     private function __construct() {
       // load textdomain for translations
-      add_action( 'plugins_loaded',  array( $this, 'load_plugin_textdomain' ) );
+      add_action( 'plugins_loaded',  array( $this, 'load_our_textdomain' ) );
 
       // add variation custom fields
       add_action( 'woocommerce_product_after_variable_attributes', array( $this, 'custom_availability_variation_field' ), 10, 3 );
@@ -51,7 +51,7 @@ if (!class_exists('WooCommerce_Custom_Availability')) {
     /**
      * Load our textdomain
      */
-    function load_textdomain() {
+    function load_our_textdomain() {
       load_plugin_textdomain( 'woocommerce-custom-availability', false, dirname( plugin_basename(__FILE__) ) . '/lang/' );
     }
 

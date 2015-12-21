@@ -39,11 +39,11 @@ if (!class_exists('WooCommerce_Custom_Availability')) {
       add_action( 'plugins_loaded',  array( $this, 'load_our_textdomain' ) );
 
       // add single custom fields
-      add_action( 'woocommerce_product_options_stock_fields', array( $this, 'custom_availability_field' ) ); 
+      add_action( 'woocommerce_product_options_stock_fields', array( $this, 'custom_availability_field' ) );
 
       // save handler for custom fields
       add_action( 'save_post', array( $this, 'save_custom_availability_field' ) );
-      
+
       // add variation custom fields
       add_action( 'woocommerce_product_after_variable_attributes', array( $this, 'custom_availability_variation_field' ), 10, 3 );
 
@@ -92,13 +92,14 @@ if (!class_exists('WooCommerce_Custom_Availability')) {
         return;
       }
 
-      if ( ! isset( $_REQUEST['_custom_availability_simple'] ) ) {
-        return;
+      if ( ! isset( $_REQUEST['_custom_availability_simple'] ) || empty( $_REQUEST['_custom_availability_simple'] ) ) {
+        update_post_meta( $post->ID, '_custom_availability', '' );
       }
-
-      update_post_meta( $post->ID, '_custom_availability', $_REQUEST['_custom_availability_simple'] );
+      else {
+        update_post_meta( $post->ID, '_custom_availability', $_REQUEST['_custom_availability_simple'] );
+      }
     }
-    
+
 
     /**
      * Show the custom availability edit field for variations
@@ -126,9 +127,10 @@ if (!class_exists('WooCommerce_Custom_Availability')) {
      * @param int $post_id
      */
     public function save_custom_availability_variation_field( $post_id ) {
-      $custom_availability = $_REQUEST['_custom_availability'][ $post_id ];
-      if( ! empty( $custom_availability ) ) {
-        update_post_meta( $post_id, '_custom_availability', esc_attr( $custom_availability ) );
+      if( ! isset( $_REQUEST['_custom_availability'][ $post_id ] ) || empty( $_REQUEST['_custom_availability'][ $post_id ] ) ) {
+        update_post_meta( $post_id, '_custom_availability', '' );
+      } else {
+        update_post_meta( $post_id, '_custom_availability', esc_attr( $_REQUEST['_custom_availability'][ $post_id ] ) );
       }
     }
 

@@ -1,17 +1,11 @@
 # WooCommerce Custom Availability
-[![License](http://img.shields.io/:license-gpl3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0.html)
+[![Latest Stable Version](https://poser.pugx.org/anttiviljami/woocommerce-custom-availability/v/stable)](https://packagist.org/packages/anttiviljami/woocommerce-custom-availability) [![Total Downloads](https://poser.pugx.org/anttiviljami/woocommerce-custom-availability/downloads)](https://packagist.org/packages/anttiviljami/woocommerce-custom-availability) [![Latest Unstable Version](https://poser.pugx.org/anttiviljami/woocommerce-custom-availability/v/unstable)](https://packagist.org/packages/anttiviljami/woocommerce-custom-availability) [![License](https://poser.pugx.org/anttiviljami/woocommerce-custom-availability/license)](https://packagist.org/packages/anttiviljami/woocommerce-custom-availability)
 
 Custom availability strings for products.
 
 Features:
 - Set custom availability strings for your products
 - Works on simple & variable products
-
-## Installation
-
-1. Upload plugin to the `/wp-content/plugins/` directory.
-2. Activate the plugin through the "Plugins" menu in WordPress.
-3. Installation done!
 
 ## Screenshots
 
@@ -23,3 +17,26 @@ Features:
 
 ### Product page view in the front end
 ![Front End View](/assets/screenshot-3.png)
+
+## Installation
+
+### The Composer Way (preferred)
+
+Install the plugin via [Composer](https://getcomposer.org/)
+```
+composer require anttiviljami/woocommerce-custom-availability
+```
+
+Activate the plugin
+```
+wp plugin activate woocommerce-custom-availability
+```
+
+### The Old Fashioned Way
+
+You can also install the plugin by directly uploading the zip file as instructed below:
+
+1. [Download the plugin](archive/master.zip)
+2. Upload to the plugin to /wp-content/plugins/ via the WordPress plugin uploader or your preferred method
+3. Activate the plugin
+

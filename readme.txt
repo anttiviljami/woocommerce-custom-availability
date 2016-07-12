@@ -1,7 +1,7 @@
 === WooCommerce Custom Availability ===
 Contributors: Zuige
 Tags: Woocommerce, Custom, Availability
-Donate link: https://seravo.fi/
+Donate link: https://github.com/anttiviljami
 Requires at least: 4.3.1
 Tested up to: 4.5.3
 Stable tag: 1.0

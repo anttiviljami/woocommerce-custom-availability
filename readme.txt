@@ -10,11 +10,18 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 == Description ==
 
-Set custom availability for products
+Set custom availability text for products
 
-Features:
-* Set custom availability strings for your products
-* Works on simple & variable products
+*Features*
+
+- Set custom availability strings for your products
+- Works on simple & variable products
+
+*Contributing*
+
+Please contribute to this project on Github. Pull requests welcome!
+
+https://github.com/anttiviljami/woocommerce-custom-availability
 
 == Installation ==
 

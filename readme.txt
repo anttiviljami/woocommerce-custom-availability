@@ -12,12 +12,12 @@ License URI: http://www.gnu.org/licenses/gpl-3.0.html
 
 Set custom availability text for products
 
-*Features*
+**Features**
 
 - Set custom availability strings for your products
 - Works on simple & variable products
 
-*Contributing*
+**Contributing**
 
 Please contribute to this project on Github. Pull requests welcome!
 

@@ -10,7 +10,7 @@
  * Text Domain: woocommerce-custom-availability
  */
 
-/** Copyright 2016 Antti Kuosmanen
+/** Copyright 2017 Antti Kuosmanen
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License, version 3, as
   published by the Free Software Foundation.

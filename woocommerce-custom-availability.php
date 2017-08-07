@@ -23,7 +23,7 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
-if ( ! class_exists('WooCommerce_Custom_Availability') ) :
+if ( ! class_exists( 'WooCommerce_Custom_Availability' ) ) :
 
 class WooCommerce_Custom_Availability {
   public static $instance;
@@ -59,7 +59,7 @@ class WooCommerce_Custom_Availability {
    * Load our textdomain
    */
   function load_our_textdomain() {
-    load_plugin_textdomain( 'woocommerce-custom-availability', false, dirname( plugin_basename(__FILE__) ) . '/lang/' );
+    load_plugin_textdomain( 'woocommerce-custom-availability', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
   }
 
   /**
@@ -75,7 +75,7 @@ class WooCommerce_Custom_Availability {
         'placeholder' => '',
         'desc_tip'    => 'true',
         'description' => __( 'Override the default availability text.', 'woocommerce-custom-availability' ),
-        'value'       => get_post_meta( $post->ID, '_custom_availability', true)
+        'value'       => get_post_meta( $post->ID, '_custom_availability', true ),
       )
     );
   }
@@ -95,8 +95,7 @@ class WooCommerce_Custom_Availability {
 
     if ( ! isset( $_REQUEST['_custom_availability_simple'] ) || empty( $_REQUEST['_custom_availability_simple'] ) ) {
       update_post_meta( $post->ID, '_custom_availability', '' );
-    }
-    else {
+    } else {
       update_post_meta( $post->ID, '_custom_availability', $_REQUEST['_custom_availability_simple'] );
     }
   }
@@ -117,7 +116,7 @@ class WooCommerce_Custom_Availability {
         'placeholder' => '',
         'desc_tip'    => 'true',
         'description' => __( 'Override the default availability text.', 'woocommerce-custom-availability' ),
-        'value'       => get_post_meta( $variation->ID, '_custom_availability', true )
+        'value'       => get_post_meta( $variation->ID, '_custom_availability', true ),
       )
     );
   }
@@ -128,7 +127,7 @@ class WooCommerce_Custom_Availability {
    * @param int $post_id
    */
   public function save_custom_availability_variation_field( $post_id ) {
-    if( ! isset( $_REQUEST['_custom_availability'][ $post_id ] ) || empty( $_REQUEST['_custom_availability'][ $post_id ] ) ) {
+    if ( ! isset( $_REQUEST['_custom_availability'][ $post_id ] ) || empty( $_REQUEST['_custom_availability'][ $post_id ] ) ) {
       update_post_meta( $post_id, '_custom_availability', '' );
     } else {
       update_post_meta( $post_id, '_custom_availability', esc_attr( $_REQUEST['_custom_availability'][ $post_id ] ) );
@@ -141,11 +140,11 @@ class WooCommerce_Custom_Availability {
    * @param string $availability
    * @param WC_Product $product
    */
-  public function custom_availability( $availability, $product  ) {
+  public function custom_availability( $availability, $product ) {
     $product_id = isset( $product->variation_id ) ? $product->variation_id : $product->id;
-    $custom_availability = get_post_meta( $product_id, '_custom_availability', true);
+    $custom_availability = get_post_meta( $product_id, '_custom_availability', true );
 
-    if( !empty( $custom_availability ) ) {
+    if ( ! empty( $custom_availability ) ) {
       $availability['class'] = 'custom-availability';
       $availability['availability'] = esc_attr( $custom_availability );
     }

@@ -29,7 +29,7 @@ if ( ! defined( 'ABSPATH' ) ) {
   exit; // Exit if accessed directly.
 }
 
-if ( ! class_exists('WooCommerce_Custom_Availability') ) :
+if ( ! class_exists( 'WooCommerce_Custom_Availability' ) ) :
 
 class WooCommerce_Custom_Availability {
   public static $instance;
@@ -63,7 +63,7 @@ class WooCommerce_Custom_Availability {
     // use custom availability in the frontend
     add_filter( 'woocommerce_get_availability', array( $this, 'custom_availability' ), 10, 2 );
   }
-  
+
   /**
    * Include required core files used in admin
    */
@@ -109,8 +109,8 @@ class WooCommerce_Custom_Availability {
     if ( 'product' != $post->post_type ) {
       return;
     }
-    
-    $_custom_availability_simple = ( isset( $_POST['_custom_availability_simple'] ) && !empty( $_POST['_custom_availability_simple'] ) ) ? sanitize_text_field( $_POST['_custom_availability_simple'] ) : '';
+
+    $_custom_availability_simple = ( isset( $_POST['_custom_availability_simple'] ) && ! empty( $_POST['_custom_availability_simple'] ) ) ? sanitize_text_field( $_POST['_custom_availability_simple'] ) : '';
     update_post_meta( $post->ID, '_custom_availability', $_custom_availability_simple );
   }
 
@@ -141,7 +141,7 @@ class WooCommerce_Custom_Availability {
    * @param int $post_id
    */
   public function save_custom_availability_variation_field( $post_id ) {
-    $_custom_availability = ( isset( $_POST['_custom_availability'][ $post_id ] ) && !empty( $_POST['_custom_availability'][ $post_id ] ) ) ? sanitize_text_field( $_POST['_custom_availability'][ $post_id ] ) : '';
+    $_custom_availability = ( isset( $_POST['_custom_availability'][ $post_id ] ) && ! empty( $_POST['_custom_availability'][ $post_id ] ) ) ? sanitize_text_field( $_POST['_custom_availability'][ $post_id ] ) : '';
     update_post_meta( $post_id, '_custom_availability', $_custom_availability );
   }
 

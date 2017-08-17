@@ -11,7 +11,7 @@
  * Tested up to: 4.8
  */
 
-/** Copyright 2016 Antti Kuosmanen
+/** Copyright 2017 Antti Kuosmanen
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License, version 3, as
   published by the Free Software Foundation.
@@ -23,6 +23,7 @@
   along with this program; if not, write to the Free Software
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
+
 
 if ( ! defined( 'ABSPATH' ) ) {
   exit; // Exit if accessed directly.
@@ -75,7 +76,7 @@ class WooCommerce_Custom_Availability {
    * Load our textdomain
    */
   function load_our_textdomain() {
-    load_plugin_textdomain( 'woocommerce-custom-availability', false, dirname( plugin_basename(__FILE__) ) . '/lang/' );
+    load_plugin_textdomain( 'woocommerce-custom-availability', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
   }
 
   /**
@@ -91,7 +92,7 @@ class WooCommerce_Custom_Availability {
         'placeholder' => '',
         'desc_tip'    => 'true',
         'description' => __( 'Override the default availability text.', 'woocommerce-custom-availability' ),
-        'value'       => get_post_meta( $post->ID, '_custom_availability', true)
+        'value'       => get_post_meta( $post->ID, '_custom_availability', true ),
       )
     );
   }
@@ -108,11 +109,9 @@ class WooCommerce_Custom_Availability {
     if ( 'product' != $post->post_type ) {
       return;
     }
-
+    
     $_custom_availability_simple = ( isset( $_POST['_custom_availability_simple'] ) && !empty( $_POST['_custom_availability_simple'] ) ) ? sanitize_text_field( $_POST['_custom_availability_simple'] ) : '';
-
     update_post_meta( $post->ID, '_custom_availability', $_custom_availability_simple );
-
   }
 
 
@@ -131,7 +130,7 @@ class WooCommerce_Custom_Availability {
         'placeholder' => '',
         'desc_tip'    => 'true',
         'description' => __( 'Override the default availability text.', 'woocommerce-custom-availability' ),
-        'value'       => get_post_meta( $variation->ID, '_custom_availability', true )
+        'value'       => get_post_meta( $variation->ID, '_custom_availability', true ),
       )
     );
   }
@@ -143,9 +142,7 @@ class WooCommerce_Custom_Availability {
    */
   public function save_custom_availability_variation_field( $post_id ) {
     $_custom_availability = ( isset( $_POST['_custom_availability'][ $post_id ] ) && !empty( $_POST['_custom_availability'][ $post_id ] ) ) ? sanitize_text_field( $_POST['_custom_availability'][ $post_id ] ) : '';
-
     update_post_meta( $post_id, '_custom_availability', $_custom_availability );
-    
   }
 
   /**
@@ -154,11 +151,11 @@ class WooCommerce_Custom_Availability {
    * @param string $availability
    * @param WC_Product $product
    */
-  public function custom_availability( $availability, $product  ) {
+  public function custom_availability( $availability, $product ) {
     $product_id = isset( $product->variation_id ) ? $product->variation_id : $product->id;
-    $custom_availability = get_post_meta( $product_id, '_custom_availability', true);
+    $custom_availability = get_post_meta( $product_id, '_custom_availability', true );
 
-    if( !empty( $custom_availability ) ) {
+    if ( ! empty( $custom_availability ) ) {
       $availability['class'] = 'custom-availability';
       $availability['availability'] = esc_attr( $custom_availability );
     }

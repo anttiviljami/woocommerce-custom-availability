@@ -45,43 +45,40 @@ class WooCommerce_Custom_Availability_Page {
         $wc_custom_availability_table = new WooCommerce_Custom_Availability_Table();
         $wc_custom_availability_table->prepare_items();
         ?>
-         <div class="wrap">
-          <h1 class="wp-heading-inline">Woocommerce Custom Availability</h1>
-          <hr class="wp-header-end">
+        <div class="wrap">
+            <h1 class="wp-heading-inline">Woocommerce Custom Availability</h1>
+            <hr class="wp-header-end">
             <?php
             // show user frienly message.
             if ( false === $form_status ) {
                 echo '<div id="message" class="notice notice-error is-dismissible">
-                        <p>' . __( 'Error! Please try again later.', 'woocommerce-custom-availability' ) . '</p>
+                        <p>' . esc_html__( 'Error! Please try again later.', 'woocommerce-custom-availability' ) . '</p>
                         <button type="button" class="notice-dismiss">
                             <span class="screen-reader-text">
-                                ' . __( 'Dismiss this notice.', 'woocommerce-custom-availability' ) . '
+                                ' . esc_html__( 'Dismiss this notice.', 'woocommerce-custom-availability' ) . '
                             </span>
                         </button>
                      </div>';
             } elseif ( true === $form_status ) {
                 echo '<div id="message" class="notice notice-success is-dismissible">
-                        <p>
-                            ' . __( 'Custom availability successfully updated.', 'woocommerce-custom-availability' ) . '
-                        </p>
+                        <p>' . esc_html__( 'successfully updated.', 'woocommerce-custom-availability' ) . '</p>
                         <button type="button" class="notice-dismiss">
                             <span class="screen-reader-text">
-                                ' . __( 'Dismiss this notice.', 'woocommerce-custom-availability' ) . '
+                                ' . esc_html__( 'Dismiss this notice.', 'woocommerce-custom-availability' ) . '
                             </span>
                         </button>
-                        </div>';
+                    </div>';
             }
             $current_url = add_query_arg();
             ?>
-          <form action="<?php echo esc_url( $current_url ); ?>" method="POST">
-                    <?php wp_nonce_field( 'wc-custom-availability-bulk', 'wc-custom-availability' ); ?>
-            <?php $wc_custom_availability_table->display(); ?>
-                    <input
-                    name="woocommerce-custom-availability-bulk"
-                    value="<?php _esc_attr_e( 'Save Changes', 'woocommerce-custom-availability' ); ?>"
-                    type="submit" class="button button-primary button-large">
-                </form>
-         </div>
+            <form action="<?php echo esc_url( $current_url ); ?>" method="POST">
+                <?php wp_nonce_field( 'wc-custom-availability-bulk', 'wc-custom-availability' ); ?>
+                <?php $wc_custom_availability_table->display(); ?>
+                <input name="woocommerce-custom-availability-bulk"
+                value="<?php esc_attr_e( 'Save Changes', 'woocommerce-custom-availability' ); ?>"
+                type="submit" class="button button-primary button-large">
+            </form>
+        </div>
         <?php
     }
 

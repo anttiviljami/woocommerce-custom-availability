@@ -101,7 +101,7 @@ class WooCommerce_Custom_Availability_Table extends WP_List_Table {
                     UNION ALL SELECT DISTINCT(post_id)
                     FROM {$wpdb->prefix}postmeta
                     WHERE ( meta_key = '_downloadable' AND meta_value = 'yes' )
-                    OR ( meta_key = '_virtual' AND meta_value = 'yes' ) ) -- %d", array(1)
+                    OR ( meta_key = '_virtual' AND meta_value = 'yes' ) ) -- %d", array( 1 )
                 )
             );
     }

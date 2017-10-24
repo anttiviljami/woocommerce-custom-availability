@@ -46,7 +46,7 @@ class WooCommerce_Custom_Availability_Page {
         $wc_custom_availability_table->prepare_items();
         ?>
         <div class="wrap">
-          <h1 class="wp-heading-inline"><?php _e( 'WooCommerce Custom Availabilities', 'woocommerce-custom-availability' ) ?></h1>
+          <h1 class="wp-heading-inline"><?php esc_html_e( 'WooCommerce Custom Availabilities', 'woocommerce-custom-availability' ); ?></h1>
             <hr class="wp-header-end">
             <?php
             // show user frienly message.
@@ -61,7 +61,7 @@ class WooCommerce_Custom_Availability_Page {
                      </div>';
             } elseif ( true === $form_status ) {
                 echo '<div id="message" class="notice notice-success is-dismissible">
-                        <p><strong>' . esc_html__('Success:') . '</strong> ' .
+                        <p><strong>' . esc_html__( 'Success:', 'woocommerce-custom-availability' ) . '</strong> ' .
                           esc_html__( 'Updated availabilities.', 'woocommerce-custom-availability' ) .
                         '</p>
                         <button type="button" class="notice-dismiss">

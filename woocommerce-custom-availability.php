@@ -89,6 +89,10 @@ class WooCommerce_Custom_Availability {
       return;
     }
 
+    if ( ! $post ) {
+      return;
+    }
+
     if ( 'product' != $post->post_type ) {
       return;
     }

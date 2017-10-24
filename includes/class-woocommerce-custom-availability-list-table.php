@@ -64,17 +64,17 @@ class WooCommerce_Custom_Availability_Table extends WP_List_Table {
         $offset = ( ( $page_no - 1 ) * $per_page );
         return $wpdb->get_results(
                                 $wpdb->prepare(
-                                        "SELECT {$wpdb->prefix}posts.ID,{$wpdb->prefix}posts.post_title FROM 
-                                        {$wpdb->prefix}posts WHERE {$wpdb->prefix}posts.post_type 
-                                        IN ('product','product_variation') 
-                                        AND {$wpdb->prefix}posts.post_status 
-                                        IN ('draft','publish') 
-                                        AND {$wpdb->prefix}posts.ID NOT IN ( SELECT DISTINCT(post_parent) 
-                                        FROM {$wpdb->prefix}posts WHERE post_type='product_variation' 
-                                        UNION ALL SELECT DISTINCT(post_id) 
-                                        FROM {$wpdb->prefix}postmeta 
-                                        WHERE ( meta_key = '_downloadable' AND meta_value = 'yes' ) 
-                                        OR ( meta_key = '_virtual' AND meta_value = 'yes' ) ) 
+                                        "SELECT {$wpdb->prefix}posts.ID,{$wpdb->prefix}posts.post_title FROM
+                                        {$wpdb->prefix}posts WHERE {$wpdb->prefix}posts.post_type
+                                        IN ('product','product_variation')
+                                        AND {$wpdb->prefix}posts.post_status
+                                        IN ('draft','publish')
+                                        AND {$wpdb->prefix}posts.ID NOT IN ( SELECT DISTINCT(post_parent)
+                                        FROM {$wpdb->prefix}posts WHERE post_type='product_variation'
+                                        UNION ALL SELECT DISTINCT(post_id)
+                                        FROM {$wpdb->prefix}postmeta
+                                        WHERE ( meta_key = '_downloadable' AND meta_value = 'yes' )
+                                        OR ( meta_key = '_virtual' AND meta_value = 'yes' ) )
                                         ORDER BY %s %s LIMIT %d OFFSET %d",
                                 array( $order_by, $order, $per_page, $offset )
                                 ),
@@ -91,17 +91,17 @@ class WooCommerce_Custom_Availability_Table extends WP_List_Table {
         global $wpdb;
         return $wpdb->get_var(
                 $wpdb->prepare(
-                    "SELECT count(*) FROM {$wpdb->prefix}posts 
-                    WHERE {$wpdb->prefix}posts.post_type 
-                    IN ('product','product_variation') AND {$wpdb->prefix}posts.post_status 
-                    IN ('draft','publish') AND {$wpdb->prefix}posts.ID NOT 
-                    IN ( SELECT DISTINCT(post_parent) 
-                    FROM {$wpdb->prefix}posts 
-                    WHERE post_type='product_variation' 
-                    UNION ALL SELECT DISTINCT(post_id) 
-                    FROM {$wpdb->prefix}postmeta 
-                    WHERE ( meta_key = '_downloadable' AND meta_value = 'yes' ) 
-                    OR ( meta_key = '_virtual' AND meta_value = 'yes' ) )", array()
+                    "SELECT count(*) FROM {$wpdb->prefix}posts
+                    WHERE {$wpdb->prefix}posts.post_type
+                    IN ('product','product_variation') AND {$wpdb->prefix}posts.post_status
+                    IN ('draft','publish') AND {$wpdb->prefix}posts.ID NOT
+                    IN ( SELECT DISTINCT(post_parent)
+                    FROM {$wpdb->prefix}posts
+                    WHERE post_type='product_variation'
+                    UNION ALL SELECT DISTINCT(post_id)
+                    FROM {$wpdb->prefix}postmeta
+                    WHERE ( meta_key = '_downloadable' AND meta_value = 'yes' )
+                    OR ( meta_key = '_virtual' AND meta_value = 'yes' ) ) -- %d", array(1)
                 )
             );
     }
@@ -167,8 +167,8 @@ class WooCommerce_Custom_Availability_Table extends WP_List_Table {
             }
         case 'description':
             $meta_value = get_post_meta( $item['ID'], '_custom_availability', true );
-                return '<input class="regular-text" 
-                                type="text" 
+                return '<input class="regular-text"
+                                type="text"
                                 name="_custom_availability[' . $item['ID'] . ']"
                                 value="' . esc_attr( $meta_value ) . '" >';
         default:

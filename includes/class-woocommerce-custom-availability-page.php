@@ -14,8 +14,8 @@ class WooCommerce_Custom_Availability_Page {
     public function add_option_page() {
         add_submenu_page(
             'edit.php?post_type=product',
-            __( 'Custom Availability', 'woocommerce-custom-availability' ),
-            __( 'Custom Availability', 'woocommerce-custom-availability' ),
+            __( 'Custom Availabilities', 'woocommerce-custom-availability' ),
+            __( 'Custom Availabilities', 'woocommerce-custom-availability' ),
             'edit_products',
             'wc-custom-availability',
             array( $this, 'woocommerce_custom_availability_page_cb' )
@@ -46,7 +46,7 @@ class WooCommerce_Custom_Availability_Page {
         $wc_custom_availability_table->prepare_items();
         ?>
         <div class="wrap">
-            <h1 class="wp-heading-inline">Woocommerce Custom Availability</h1>
+          <h1 class="wp-heading-inline"><?php _e( 'WooCommerce Custom Availabilities', 'woocommerce-custom-availability' ) ?></h1>
             <hr class="wp-header-end">
             <?php
             // show user frienly message.
@@ -61,7 +61,9 @@ class WooCommerce_Custom_Availability_Page {
                      </div>';
             } elseif ( true === $form_status ) {
                 echo '<div id="message" class="notice notice-success is-dismissible">
-                        <p>' . esc_html__( 'successfully updated.', 'woocommerce-custom-availability' ) . '</p>
+                        <p><strong>' . esc_html__('Success:') . '</strong> ' .
+                          esc_html__( 'Updated availabilities.', 'woocommerce-custom-availability' ) .
+                        '</p>
                         <button type="button" class="notice-dismiss">
                             <span class="screen-reader-text">
                                 ' . esc_html__( 'Dismiss this notice.', 'woocommerce-custom-availability' ) . '
@@ -69,7 +71,7 @@ class WooCommerce_Custom_Availability_Page {
                         </button>
                     </div>';
             }
-            $current_url = add_query_arg();
+            $current_url = $_SERVER['REQUEST_URI'];
             ?>
             <form action="<?php echo esc_url( $current_url ); ?>" method="POST">
                 <?php wp_nonce_field( 'wc-custom-availability-bulk', 'wc-custom-availability' ); ?>

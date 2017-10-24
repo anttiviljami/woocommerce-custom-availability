@@ -3,7 +3,7 @@
  * Plugin name: WooCommerce Custom Availability
  * Plugin URI: https://github.com/anttiviljami/woocommerce-custom-availability
  * Description: Set custom availability for products
- * Version: 1.1
+ * Version: 1.0.1
  * Author: @anttiviljami
  * Author: https://github.com/anttiviljami
  * License: GPLv3
@@ -11,7 +11,7 @@
  * Tested up to: 4.8
  */
 
-/** Copyright 2017 Antti Kuosmanen
+/** Copyright 2017 Viljami Kuosmanen
   This program is free software; you can redistribute it and/or modify
   it under the terms of the GNU General Public License, version 3, as
   published by the Free Software Foundation.
@@ -103,6 +103,10 @@ class WooCommerce_Custom_Availability {
   public function save_custom_availability_field() {
     global $post;
     if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) {
+      return;
+    }
+
+    if ( ! $post ) {
       return;
     }
 

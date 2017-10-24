@@ -8,6 +8,7 @@
  * Author: https://github.com/anttiviljami
  * License: GPLv3
  * Text Domain: woocommerce-custom-availability
+ * Tested up to: 4.8
  */
 
 /** Copyright 2017 Viljami Kuosmanen
@@ -23,6 +24,11 @@
   Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+
+if ( ! defined( 'ABSPATH' ) ) {
+  exit; // Exit if accessed directly.
+}
+
 if ( ! class_exists( 'WooCommerce_Custom_Availability' ) ) :
 
 class WooCommerce_Custom_Availability {
@@ -36,6 +42,9 @@ class WooCommerce_Custom_Availability {
   }
 
   private function __construct() {
+
+    $this->includes();
+
     // load textdomain for translations
     add_action( 'plugins_loaded',  array( $this, 'load_our_textdomain' ) );
 
@@ -53,6 +62,14 @@ class WooCommerce_Custom_Availability {
 
     // use custom availability in the frontend
     add_filter( 'woocommerce_get_availability', array( $this, 'custom_availability' ), 10, 2 );
+  }
+
+  /**
+   * Include required core files used in admin
+   */
+  public function includes() {
+    require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-custom-availability-list-table.php';
+    require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-custom-availability-page.php';
   }
 
   /**
@@ -97,11 +114,8 @@ class WooCommerce_Custom_Availability {
       return;
     }
 
-    if ( ! isset( $_REQUEST['_custom_availability_simple'] ) || empty( $_REQUEST['_custom_availability_simple'] ) ) {
-      update_post_meta( $post->ID, '_custom_availability', '' );
-    } else {
-      update_post_meta( $post->ID, '_custom_availability', $_REQUEST['_custom_availability_simple'] );
-    }
+    $_custom_availability_simple = ( isset( $_POST['_custom_availability_simple'] ) && ! empty( $_POST['_custom_availability_simple'] ) ) ? sanitize_text_field( $_POST['_custom_availability_simple'] ) : '';
+    update_post_meta( $post->ID, '_custom_availability', $_custom_availability_simple );
   }
 
 
@@ -131,11 +145,8 @@ class WooCommerce_Custom_Availability {
    * @param int $post_id
    */
   public function save_custom_availability_variation_field( $post_id ) {
-    if ( ! isset( $_REQUEST['_custom_availability'][ $post_id ] ) || empty( $_REQUEST['_custom_availability'][ $post_id ] ) ) {
-      update_post_meta( $post_id, '_custom_availability', '' );
-    } else {
-      update_post_meta( $post_id, '_custom_availability', esc_attr( $_REQUEST['_custom_availability'][ $post_id ] ) );
-    }
+    $_custom_availability = ( isset( $_POST['_custom_availability'][ $post_id ] ) && ! empty( $_POST['_custom_availability'][ $post_id ] ) ) ? sanitize_text_field( $_POST['_custom_availability'][ $post_id ] ) : '';
+    update_post_meta( $post_id, '_custom_availability', $_custom_availability );
   }
 
   /**

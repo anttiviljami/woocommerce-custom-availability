@@ -162,7 +162,8 @@ class WooCommerce_Custom_Availability {
 
     if ( ! empty( $custom_availability ) ) {
       $availability['class'] = 'custom-availability';
-      if( get_option( '_wca_include_woocommerce_availability' , 'no' ) === 'yes' ) {
+      
+      if ( get_option( '_wca_include_woocommerce_availability', 'no' ) === 'yes' ) {
         $availability['availability'] .= ' <span>' . esc_attr( $custom_availability ) . '</span>';
       } else {
         $availability['availability'] = esc_attr( $custom_availability );

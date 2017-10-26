@@ -76,7 +76,7 @@ class WooCommerce_Custom_Availability {
   /**
    * Load our textdomain
    */
-  function load_our_textdomain() {
+  public function load_our_textdomain() {
     load_plugin_textdomain( 'woocommerce-custom-availability', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
   }
 
@@ -162,7 +162,6 @@ class WooCommerce_Custom_Availability {
 
     if ( ! empty( $custom_availability ) ) {
       $availability['class'] = 'custom-availability';
-      
       if ( get_option( '_wca_include_woocommerce_availability', 'no' ) === 'yes' ) {
         $availability['availability'] .= ' <span>' . esc_attr( $custom_availability ) . '</span>';
       } else {

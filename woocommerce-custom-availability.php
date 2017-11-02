@@ -70,12 +70,13 @@ class WooCommerce_Custom_Availability {
   public function includes() {
     require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-custom-availability-list-table.php';
     require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-custom-availability-page.php';
+    require_once plugin_dir_path( __FILE__ ) . 'includes/class-woocommerce-custom-availability-tab.php';
   }
 
   /**
    * Load our textdomain
    */
-  function load_our_textdomain() {
+  public function load_our_textdomain() {
     load_plugin_textdomain( 'woocommerce-custom-availability', false, dirname( plugin_basename( __FILE__ ) ) . '/lang/' );
   }
 
@@ -161,7 +162,11 @@ class WooCommerce_Custom_Availability {
 
     if ( ! empty( $custom_availability ) ) {
       $availability['class'] = 'custom-availability';
-      $availability['availability'] = esc_attr( $custom_availability );
+      if ( get_option( '_wca_include_woocommerce_availability', 'no' ) === 'yes' ) {
+        $availability['availability'] .= ' <span>' . esc_attr( $custom_availability ) . '</span>';
+      } else {
+        $availability['availability'] = esc_attr( $custom_availability );
+      }
     }
     return $availability;
   }

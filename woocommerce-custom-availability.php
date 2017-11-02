@@ -3,7 +3,7 @@
  * Plugin name: WooCommerce Custom Availability
  * Plugin URI: https://github.com/anttiviljami/woocommerce-custom-availability
  * Description: Set custom availability for products
- * Version: 1.1.0
+ * Version: 1.2.0
  * Author: @anttiviljami
  * Author: https://github.com/anttiviljami
  * License: GPLv3

@@ -157,7 +157,7 @@ class WooCommerce_Custom_Availability {
    * @param WC_Product $product
    */
   public function custom_availability( $availability, $product ) {
-    $product_id = isset( $product->variation_id ) ? $product->variation_id : $product->id;
+    $product_id = $product->get_id();
     $custom_availability = get_post_meta( $product_id, '_custom_availability', true );
 
     if ( ! empty( $custom_availability ) ) {
